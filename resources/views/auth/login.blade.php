@@ -1,73 +1,106 @@
 @extends('layouts.app')
 
+
+@section('contenido_js')
+    
+@endsection
+
+@section('contenido_cSS')
+<style>
+    body{
+        background: #0091D1;
+        background: linear-gradient(to right, #74B9D7, #0091D1);
+    }
+    
+    .bg{
+        background-image:  url("{{ asset('img/BG.png') }}");
+        background-position: center center;
+    }
+</style>
+
+@endsection
+
+
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
+<div class="container w-75 bg-primary mt-5 rounded shadow">
+    <div class="row align-items-stretch">
+        <div class="col bg d-none d-lg-block col-md-5 col-lg-5 col-xl-6">
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
-                        @csrf
-
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
-                                </button>
-
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                @endif
-                            </div>
-                        </div>
-                    </form>
-                </div>
+        </div>
+        <div class="col bg-white p-5 rounded-end">
+            <div class="text-end">
+                <img src="{{ asset('img/Logo.png') }}" width="122" alt="">
             </div>
+
+            <h2 class="fw-bold text-center py-5">Bienvenido</h2>
+
+            <!-- Login -->
+
+            <form action="#">
+                <div class="mb-4">
+                    <label for="email" class="form-label">Correo electrónico</label>
+                    <input type="email" class="form-control" name="email">
+                </div>
+                <div class="mb-4">
+                    <label for="password" class="form-label">Contraseña</label>
+                    <input type="password" class="form-control" name="password">
+                </div>
+                <!--<div class="mb-4 form-check">
+                    <input type="checkbox" name="connected" class="form-check-input" id="">
+                    <label for="connected" class="form-check-label">Mantenerme conectado</label>
+                </div>-->
+
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+                </div>
+
+                <div class="my-3">
+                    <span>No tienes cuenta? <a href="registro.html">Regístrate</a></span> <br>
+                    <!--<span><a href="#">Recuperar contraseña</a></span>-->
+                </div>
+
+                <!-- LOGIN CON REDES SOCIALES-->
+                <!--<div class="container w-100 my-5">
+                    <div class="row text-center">
+                        <div class="col-12">Iniciar Sesión</div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <button class="btn btn-outline-primary w-100 my-1">
+                                <div class="row align-items-center">
+                                    <div class="col-2 d-none d-md-block">
+                                        <img src="img/fb.png" width="32" alt="">
+                                    </div>
+
+                                    <div class="col-12 col-md-10 text-center">
+                                        Facebook
+                                    </div>
+                                </div>
+                            </button>
+                        </div>
+                        <div class="col">
+                            <button class="btn btn-outline-danger w-100 my-1">
+                                <div class="row align-items-center">
+                                    <div class="col-2 d-none d-md-block">
+                                        <img src="img/google.png" width="32" alt="">
+                                    </div>
+
+                                    <div class="col-12 col-md-10 text-center">
+                                        Google
+                                    </div>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                </div>-->
+            </form>
         </div>
     </div>
 </div>
+
+
+@endsection
+
+@section('contenido_abajo_js')
+    
 @endsection
