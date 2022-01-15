@@ -17,4 +17,9 @@ class Propuesta extends Model
         'use_id',
     ];
 
+    public function propuestaUserPropuesta()
+    {
+        return $this->hasMany(UserPropuesta::class, 'pro_id');
+    }
+
 }

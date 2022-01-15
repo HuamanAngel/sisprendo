@@ -63,4 +63,13 @@ class PropuestaController extends Controller
     {
         //
     }
+
+    public function acceptedProffer($id){
+        $profer = Propuesta::where('id',$id)->first();
+        $profer->propuestaUserPropuesta()->create([
+            'use_id' => auth()->user()->id,
+            'pro_id' => $id,
+        ]);
+        return redirect()->route('propuesta.index')->with('msgSucces', 'Propuesta aceptada, se envio un mensaje al emprendedor');
+    }
 }

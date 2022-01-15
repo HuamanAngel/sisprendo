@@ -30,5 +30,15 @@
 @endsection
 
 @section('contenido_abajo_js')
+    @if (session('msgSucces'))
+        <script>
+            Swal.fire({
+                title: "Exito",
+                html: `
+        {{ session('msgSucces') }}`,
+                icon: "success"
+            });
+        </script>
 
+    @endif
 @endsection

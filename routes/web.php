@@ -21,6 +21,7 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/propuesta',[PropuestaController::class,'index'])->name('propuesta.index');
 Route::get('/propuesta/{id}',[PropuestaController::class,'show'])->name('propuesta.show');
+Route::get('/propuesta/accepter/{id}',[PropuestaController::class,'acceptedProffer'])->name('propuesta.accepted')->middleware('auth');
 Route::get('nuevo',function(){
     return view('nuevo');
 });

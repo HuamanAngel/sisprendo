@@ -55,6 +55,11 @@ class User extends Authenticatable
 
     public function userPropuestas()
     {
-        return $this->hasMany(Propuesta::class);
+        return $this->hasMany(Propuesta::class,'use_id');
+    }
+
+    public function userUserPropuestas()
+    {
+        return $this->hasMany(UserPropuesta::class);
     }
 }
