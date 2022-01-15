@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PropuestaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,6 +19,8 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('we
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/propuesta',[PropuestaController::class,'index'])->name('propuesta.index');
+Route::get('/propuesta/{id}',[PropuestaController::class,'show'])->name('propuesta.show');
 Route::get('nuevo',function(){
     return view('nuevo');
 });

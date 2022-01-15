@@ -40,8 +40,8 @@
                 </button>
                 <div class="">
                     <div class="grid grid-cols-5 font-bold px-64 gap-x-6">
-                      <a href="#">Inicio</a>
-                      <a href="#">Propuestas</a>
+                      <a href="{{ route('home') }}">Inicio</a>
+                      <a href="{{ route('propuesta.index') }}">Propuestas</a>
                       <div class="col-span-3">
                         <div
                           class="bg-gray-50 px-4  rounded-md flex gap-x-2 items-center"
