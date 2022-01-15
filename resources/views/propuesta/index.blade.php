@@ -15,16 +15,13 @@
         <h1 class="font-bold text-4xl py-6 px-8">Propuestas</h1>
         <div class="mx-8 my-4">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-8">
-                @include('propuesta.snippet.profer')
-                @include('propuesta.snippet.profer')
-                @include('propuesta.snippet.profer')
-                @include('propuesta.snippet.profer')
-                @include('propuesta.snippet.profer')
-                @include('propuesta.snippet.profer')
-                @include('propuesta.snippet.profer')
-                @include('propuesta.snippet.profer')
-                @include('propuesta.snippet.profer')
-                @include('propuesta.snippet.profer')
+                @if($profers != null)                    
+                    @foreach($profers as $profer)
+                            @include('propuesta.snippet.profer')
+                    @endforeach
+                @else
+                    <h4>Aun no has propuestas disponibles</h4>
+                @endif
             </div>
         </div>
 

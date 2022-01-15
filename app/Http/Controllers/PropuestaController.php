@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Propuesta;
 use Illuminate\Http\Request;
 
 class PropuestaController extends Controller
@@ -13,7 +14,9 @@ class PropuestaController extends Controller
      */
     public function index()
     {
-        return view('propuesta.index');
+
+        $profers = Propuesta::all();
+        return view('propuesta.index',compact('profers'));
     }
 
     /**
@@ -34,7 +37,8 @@ class PropuestaController extends Controller
      */
     public function show($id)
     {
-        return view('propuesta.show');
+        $profer = Propuesta::where('id',$id)->first();
+        return view('propuesta.show',compact('profer'));
     }
 
     /**

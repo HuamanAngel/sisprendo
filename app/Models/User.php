@@ -24,7 +24,6 @@ class User extends Authenticatable
         'use_name',
         'use_lastname',
         'use_nick',
-        'password',
         'use_type',
         'use_age',
         'use_cellphone',
@@ -53,4 +52,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function userPropuestas()
+    {
+        return $this->hasMany(Propuesta::class);
+    }
 }
