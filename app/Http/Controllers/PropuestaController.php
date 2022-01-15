@@ -12,10 +12,14 @@ class PropuestaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        if($request->wordSearch != null || $request->wordSearch != ''){
+            $profers = Propuesta::where('pro_title', 'like', '%'.$request->wordSearch.'%')->get();
+        }else{
+            $profers = Propuesta::all();
+        }
 
-        $profers = Propuesta::all();
         return view('propuesta.index',compact('profers'));
     }
 

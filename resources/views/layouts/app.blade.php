@@ -46,12 +46,18 @@
                         <div
                           class="bg-gray-50 px-4  rounded-md flex gap-x-2 items-center"
                         >
-                          <i class="fas fa-search mr-2"></i>
-                          <input
-                            type="text"
-                            placeholder="Buscar..."
-                            class="inline bg-gray-50 w-full outline-none"
-                          />
+                            <form action="{{ route('propuesta.index') }}" method="get">
+                                <input
+                                  type="text"
+                                  name="wordSearch"
+                                  placeholder="Buscar..."
+                                  class="inline bg-gray-50 w-full outline-none"
+                                />
+                                <button type="submit">
+                                    <i class="fas fa-search mr-2"></i>
+                                </button>
+      
+                            </form>
                         </div>
                       </div>
                     </div>
