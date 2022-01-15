@@ -18,11 +18,13 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
-    <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('fonts/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
     <link href="{{ asset('fortawesome/fontawesome-free/css/all.min.css') }}" rel="stylesheet">
+    {{-- <link href="{{ mix('css/app.css') }}" rel="stylesheet"> --}}
+    <link rel="stylesheet" href="{{ asset('bootstrap5/bootstrap.min.css ') }}">
     @yield('contenido_cSS')
 
+    <script src="{{ asset('bootstrap5/bootstrap.bundle.min.js') }}"></script>
 </head> 
 <body>
     <div id="app">
@@ -48,18 +50,30 @@
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+
+                                    <a href="{{ route('login') }}" class="nav-link bg-[#F3F1FF] p-2 rounded-lg w-full text-center font-bold text-[#816AFE]">
+                                    Iniciar sesión
+                                    </a>
+
                                 </li>
+
+
+                            
+                                {{-- <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                </li> --}}
                             @endif
                             
-                            @if (Route::has('register'))
+                            @if (Route::has('register'))                  
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a href="{{ route('register') }}" class="nav-link bg-[#816AFE] p-2 rounded-lg w-full text-center font-bold text-white">
+                                        Registro
+                                    </a>
                                 </li>
                             @endif
                         @else
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ auth()->user()->use_name }}
                                 </a>
 
@@ -76,6 +90,14 @@
                                 </div>
                             </li>
                         @endguest
+                        <li class="nav-item">
+                            <a
+                            class="bg-[#816AFE] p-2 rounded-lg w-full text-center font-bold text-white"
+                              >
+                            Subir propuesta
+                            </a>                        
+    
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -85,7 +107,7 @@
             @yield('content')
         </main>
     </div>
-    <script src="{{ mix('js/app.js') }}" ></script>
+    {{-- <script src="{{ mix('js/app.js') }}" ></script> --}}
     <script src="{{ asset('fortawesome/fontawesome-free/js/all.min.js') }}"></script>
 
     @yield('contenido_abajo_js')
