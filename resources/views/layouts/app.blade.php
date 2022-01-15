@@ -20,11 +20,12 @@
     <!-- Styles -->
     <link href="{{ asset('fonts/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
     <link href="{{ asset('fortawesome/fontawesome-free/css/all.min.css') }}" rel="stylesheet">
-    {{-- <link href="{{ mix('css/app.css') }}" rel="stylesheet"> --}}
-    <link rel="stylesheet" href="{{ asset('bootstrap5/bootstrap.min.css ') }}">
+    <link rel="stylesheet" href="{{ 'css/style.css' }} ">
+    <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+    {{-- <link rel="stylesheet" href="{{ asset('bootstrap5/bootstrap.min.css ') }}"> --}}
     @yield('contenido_cSS')
 
-    <script src="{{ asset('bootstrap5/bootstrap.bundle.min.js') }}"></script>
+    {{-- <script src="{{ asset('bootstrap5/bootstrap.bundle.min.js') }}"></script> --}}
 </head> 
 <body>
     <div id="app">
@@ -34,23 +35,46 @@
                     {{-- {{ config('app.name', 'Laravel') }} --}}
                     <img width="100 em" src="{{ asset('img/Logo.png') }}" alt="">
                 </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-
+                <div class="">
+                    <div class="grid grid-cols-5 font-bold px-64 gap-x-6">
+                      <a href="#">Inicio</a>
+                      <a href="#">Propuestas</a>
+                      <div class="col-span-3">
+                        <div
+                          class="bg-gray-50 px-4  rounded-md flex gap-x-2 items-center"
+                        >
+                          <i class="fas fa-search mr-2"></i>
+                          <input
+                            type="text"
+                            placeholder="Buscar..."
+                            class="inline bg-gray-50 w-full outline-none"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>    
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
+                
                     <ul class="navbar-nav mr-auto">
 
                     </ul>
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <button onclick="window.location.href='{{ route('register') }}'" class="nav-link bg-[#816AFE] p-2 rounded-lg w-full text-center font-bold text-white">
+                                Subir propuesta
+                            </button>
+                        </li>
+            
                         <!-- Authentication Links -->
                         @guest
                             @if (Route::has('login'))
-                                <li class="nav-item">
-
+                                <li class="nav-item">                          
                                     <a href="{{ route('login') }}" class="nav-link bg-[#F3F1FF] p-2 rounded-lg w-full text-center font-bold text-[#816AFE]">
                                     Iniciar sesión
                                     </a>
@@ -64,11 +88,11 @@
                                 </li> --}}
                             @endif
                             
-                            @if (Route::has('register'))                  
+                            @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a href="{{ route('register') }}" class="nav-link bg-[#816AFE] p-2 rounded-lg w-full text-center font-bold text-white">
+                                    <button onclick="window.location.href='{{ route('register') }}'" class="nav-link bg-[#816AFE] p-2 rounded-lg w-full text-center font-bold text-white">
                                         Registro
-                                    </a>
+                                    </button>
                                 </li>
                             @endif
                         @else
@@ -90,14 +114,7 @@
                                 </div>
                             </li>
                         @endguest
-                        <li class="nav-item">
-                            <a
-                            class="bg-[#816AFE] p-2 rounded-lg w-full text-center font-bold text-white"
-                              >
-                            Subir propuesta
-                            </a>                        
-    
-                        </li>
+
                     </ul>
                 </div>
             </div>
@@ -107,7 +124,7 @@
             @yield('content')
         </main>
     </div>
-    {{-- <script src="{{ mix('js/app.js') }}" ></script> --}}
+    <script src="{{ mix('js/app.js') }}" ></script>
     <script src="{{ asset('fortawesome/fontawesome-free/js/all.min.js') }}"></script>
 
     @yield('contenido_abajo_js')
