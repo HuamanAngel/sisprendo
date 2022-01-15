@@ -36,7 +36,8 @@
 
             <!-- Login -->
 
-            <form action="#">
+            <form action="{{ route('login') }}" method="POST">
+                @csrf
                 <div class="mb-4">
                     <label for="email" class="form-label">Correo electrónico</label>
                     <input type="email" class="form-control" name="email">
