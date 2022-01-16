@@ -13,7 +13,10 @@ class UserPropuesta extends Model
         'use_id',
         'pro_id',
     ];
-
+    public function userPropuestaUser()
+    {
+        return $this->belongsTo(User::class,'use_id');
+    }
     public static function checkProfer($idProfer){
         $isPressed = self::where('pro_id', $idProfer)->where('use_id',auth()->user()->id)->first();
         if($isPressed!=null){

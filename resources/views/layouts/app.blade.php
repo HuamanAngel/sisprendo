@@ -20,7 +20,7 @@
     <!-- Styles -->
     <link href="{{ asset('fonts/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
     <link href="{{ asset('fortawesome/fontawesome-free/css/all.min.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="{{ 'css/style.css' }} ">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }} ">
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     {{-- <link rel="stylesheet" href="{{ asset('bootstrap5/bootstrap.min.css ') }}"> --}}
     @yield('contenido_cSS')
@@ -108,6 +108,9 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('investor.index') }}">
+                                        Perfil
+                                    </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

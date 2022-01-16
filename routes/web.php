@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PerfilController;
 use App\Http\Controllers\PropuestaController;
 use Illuminate\Support\Facades\Route;
 
@@ -21,7 +22,12 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/propuesta',[PropuestaController::class,'index'])->name('propuesta.index');
 Route::get('/propuesta/{id}',[PropuestaController::class,'show'])->name('propuesta.show');
-Route::get('/propuesta/accepter/{id}',[PropuestaController::class,'acceptedProffer'])->name('propuesta.accepted')->middleware('auth');
+Route::middleware('auth')->group(function (){
+    Route::get('/propuesta/accepter/{id}',[PropuestaController::class,'acceptedProffer'])->name('propuesta.accepted');
+    Route::get('/perfil/inversionistas',[PerfilController::class,'indexInvestor'])->name('investor.index');
+    Route::delete('/perfil/inversionistas/{id}',[PerfilController::class,'deleteInvestor'])->name('investor.delete');
+});
+
 Route::get('nuevo',function(){
     return view('nuevo');
 });
