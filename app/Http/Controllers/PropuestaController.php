@@ -31,6 +31,12 @@ class PropuestaController extends Controller
      */
     public function store(Request $request)
     {
+        auth()->user()->userPropuestas()->create([
+            'pro_title'=>$request->pro_title,
+            'pro_description'=>$request->pro_description,
+            'pro_image'=>"https://img.interempresas.net/fotos/2517054.jpeg"
+        ]);
+        return redirect()->route('investor.index');
     }
 
     /**

@@ -26,6 +26,7 @@ Route::middleware('auth')->group(function (){
     Route::get('/propuesta/accepter/{id}',[PropuestaController::class,'acceptedProffer'])->name('propuesta.accepted');
     Route::get('/perfil/inversionistas',[PerfilController::class,'indexInvestor'])->name('investor.index');
     Route::delete('/perfil/inversionistas/{id}',[PerfilController::class,'deleteInvestor'])->name('investor.delete');
+    Route::post('/propuesta',[PropuestaController::class,'store'])->name('propuesta.store');
 });
 
 Route::get('nuevo',function(){

@@ -13,7 +13,6 @@ class Propuesta extends Model
         'pro_title',
         'pro_description',
         'pro_image',
-        'use_lastname',
         'use_id',
     ];
 

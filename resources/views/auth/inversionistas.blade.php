@@ -29,8 +29,36 @@
                 <div class="tab-pane fade" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
                 </div>
                 <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                    <style>
+                        .myprofer>img {
+                            width: 100% !important;
+                            height: 400px !important;
+                        }
+
+                    </style>
+                    <div class="row myprofer">
+                        <div class="col-sm-3">
+                            <div class="card">
+                                <img class="cursor-pointer" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                    height="200px" src="{{ asset('img/icon_add.png') }}" alt="">
+                            </div>
+                        </div>
+                        @if (auth()->user()->userPropuestas != null)
+                            @foreach (auth()->user()->userPropuestas as $profer)
+                                <div class="col-sm-3">
+                                    <div class="card">
+                                        @include('propuesta.snippet.profer')
+                                    </div>
+                                </div>
+                            @endforeach
+                        @else
+                            <h4>Aun no has propuestas disponibles</h4>
+                        @endif
+                    </div>
+
                 </div>
-                <div class="tab-pane fade show active" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+                <div class="tab-pane fade show active" id="v-pills-messages" role="tabpanel"
+                    aria-labelledby="v-pills-messages-tab">
                     <caption class="fw-bold text-center py-2">Interesados en tus propuestas</caption>
                     <div class="table-responsive">
                         <table class="table caption-top">
@@ -52,28 +80,32 @@
                                 @php
                                     $iteracionNow = 0;
                                 @endphp
-                                @foreach(auth()->user()->userPropuestas as $propuesta)
-                                    @foreach($propuesta->propuestaUserPropuesta as $userPropuesta)
+                                @foreach (auth()->user()->userPropuestas as $propuesta)
+                                    @foreach ($propuesta->propuestaUserPropuesta as $userPropuesta)
                                         @php
                                             $iteracionNow++;
                                         @endphp
-                                    <tr>
-                                        <th scope="row">{{ $iteracionNow }}</th>
-                                        <td><a href="{{ route('propuesta.show',$propuesta->id) }}">{{ 'Pro-'.$iteracionNow }}</a></td>
-                                        <td>{{ $userPropuesta->userPropuestaUser->use_name.' '.$userPropuesta->userPropuestaUser->use_lastname }}</td>
-                                        <td>{{ $userPropuesta->userPropuestaUser->use_phone }}</td>
-                                        <td>{{ $userPropuesta->userPropuestaUser->use_cellphone }}</td>
-                                        <td>{{ $userPropuesta->created_at }} </td>
-                                        <td>{{ $userPropuesta->userPropuestaUser->email }}</td>
-                                        <td>
-                                            <form action="{{ route('investor.delete',$userPropuesta->id) }}" method="POST">
-                                                @csrf
-                                                @method('delete')
-                                                <button type="submit" class="btn btn-primary">Borrar</button>
-                                            </form>
-                                        </td>
-    
-                                    </tr>
+                                        <tr>
+                                            <th scope="row">{{ $iteracionNow }}</th>
+                                            <td><a
+                                                    href="{{ route('propuesta.show', $propuesta->id) }}">{{ 'Pro-' . $iteracionNow }}</a>
+                                            </td>
+                                            <td>{{ $userPropuesta->userPropuestaUser->use_name . ' ' . $userPropuesta->userPropuestaUser->use_lastname }}
+                                            </td>
+                                            <td>{{ $userPropuesta->userPropuestaUser->use_phone }}</td>
+                                            <td>{{ $userPropuesta->userPropuestaUser->use_cellphone }}</td>
+                                            <td>{{ $userPropuesta->created_at }} </td>
+                                            <td>{{ $userPropuesta->userPropuestaUser->email }}</td>
+                                            <td>
+                                                <form action="{{ route('investor.delete', $userPropuesta->id) }}"
+                                                    method="POST">
+                                                    @csrf
+                                                    @method('delete')
+                                                    <button type="submit" class="btn btn-primary">Borrar</button>
+                                                </form>
+                                            </td>
+
+                                        </tr>
                                     @endforeach
                                 @endforeach
                             </tbody>
@@ -82,6 +114,40 @@
 
                 </div>
             </div>
+        </div>
+    </div>
+
+
+    {{-- Modal --}}
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <form action="{{ route('propuesta.store') }}" method="POST">
+                @csrf
+
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Nueva Propuesta</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">Titulo</label>
+                            <input type="text" name="pro_title" placeholder="Titulo de la propuesta" class="form-control"
+                                id="recipient-name">
+                        </div>
+                        <div class="mb-3">
+                            <label for="message-text" class="col-form-label">Propuesta</label>
+                            <textarea class="form-control" name="pro_description" placeholder="Añade tu propuesta"
+                                id="message-text"></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-warning">Comprar</button>
+                        <button type="submit" class="btn btn-primary">Subir Gratis</button>
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
 @endsection
