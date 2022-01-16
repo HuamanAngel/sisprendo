@@ -12,23 +12,31 @@
 
 @section('content')
     <div class="container">
+        <style>
+            .nav-pills > li.active > a, 
+            .nav-pills > li.active > a:focus, 
+            .nav-pills > li.active > a:hover {
+                color: #fff !important;
+                background-color: red !important;
+            }            
+        </style>
 
         <div class="d-flex align-items-start row">
-            <div class="bg-primary nav flex-column nav-pills col-md-2 col-sm-12" id="v-pills-tab" role="tablist"
+            <div class="nav flex-column nav-pills col-md-2 col-sm-12" id="v-pills-tab" role="tablist"
                 aria-orientation="vertical">
                 {{-- <button class="nav-link" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home"
                     type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">Perfil</button> --}}
-                <button class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill"
+                <button class="nav-link active"  id="v-pills-profile-tab" data-bs-toggle="pill"
                     data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile"
                     aria-selected="false">Mis propuestas</button>
-                <button class="nav-link active" id="v-pills-messages-tab" data-bs-toggle="pill"
+                <button class="nav-link"  id="v-pills-messages-tab" data-bs-toggle="pill"
                     data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages"
                     aria-selected="false">Inversionistas</button>
             </div>
             <div class="tab-content col-md-10 col-sm-10" id="v-pills-tabContent">
                 <div class="tab-pane fade" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
                 </div>
-                <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                <div class="tab-pane fade show active" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
                     <style>
                         .myprofer>img {
                             width: 100% !important;
@@ -57,7 +65,7 @@
                     </div>
 
                 </div>
-                <div class="tab-pane fade show active" id="v-pills-messages" role="tabpanel"
+                <div class="tab-pane fade " id="v-pills-messages" role="tabpanel"
                     aria-labelledby="v-pills-messages-tab">
                     <caption class="fw-bold text-center py-2">Interesados en tus propuestas</caption>
                     <div class="table-responsive">

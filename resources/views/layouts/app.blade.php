@@ -72,7 +72,7 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
-                            <button onclick="window.location.href='{{ route('register') }}'" class="nav-link bg-[#816AFE] p-2 rounded-lg w-full text-center font-bold text-white">
+                            <button onclick="window.location.href='{{ route('investor.index') }}'" class="nav-link bg-[#816AFE] p-2 rounded-lg w-full text-center font-bold text-white">
                                 Subir propuesta
                             </button>
                         </li>
