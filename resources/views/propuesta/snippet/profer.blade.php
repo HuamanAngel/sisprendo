@@ -1,5 +1,5 @@
 <div onclick="window.location.href='{{ route('propuesta.show',$profer->id ) }}'"
-  class="bg-white rounded-lg shadow-lg shadow-drop-2-center cursor-pointer"
+  class=" @if($profer->pro_premium == 1 ) bg-warning @endif rounded-lg shadow-lg shadow-drop-2-center cursor-pointer"
 >
 
   <img

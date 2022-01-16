@@ -15,9 +15,9 @@ class PropuestaController extends Controller
     public function index(Request $request)
     {
         if($request->wordSearch != null || $request->wordSearch != ''){
-            $profers = Propuesta::where('pro_title', 'like', '%'.$request->wordSearch.'%')->get();
+            $profers = Propuesta::where('pro_title', 'like', '%'.$request->wordSearch.'%')->orderBy('pro_premium', 'desc')->get();
         }else{
-            $profers = Propuesta::all();
+            $profers = Propuesta::orderBy('pro_premium', 'desc')->get();
         }
 
         return view('propuesta.index',compact('profers'));
@@ -31,13 +31,30 @@ class PropuestaController extends Controller
      */
     public function store(Request $request)
     {
-        auth()->user()->userPropuestas()->create([
-            'pro_title'=>$request->pro_title,
-            'pro_description'=>$request->pro_description,
-            'pro_image'=>"https://img.interempresas.net/fotos/2517054.jpeg"
-        ]);
-        return redirect()->route('investor.index');
+        if($request->has('comprar')){
+            return view('auth.payment',compact('request'));
+        }else if($request->has('gratis')){
+            auth()->user()->userPropuestas()->create([
+                'pro_title'=>$request->pro_title,
+                'pro_description'=>$request->pro_description,
+                'pro_image'=>"https://img.interempresas.net/fotos/2517054.jpeg"
+            ]);
+            return redirect()->route('investor.index');
+        }else if($request->has('premium')){
+            auth()->user()->userPropuestas()->create([
+                'pro_title'=>$request->pro_title,
+                'pro_description'=>$request->pro_description,
+                'pro_image'=>"https://img.interempresas.net/fotos/2517054.jpeg",
+                'pro_premium'=>true
+            ]);
+            return redirect()->route('investor.index');
+        }
     }
+    
+    public function payment(){
+        return view('auth.payment');
+    }
+
 
     /**
      * Display the specified resource.

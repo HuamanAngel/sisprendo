@@ -16,8 +16,8 @@
         <div class="d-flex align-items-start row">
             <div class="bg-primary nav flex-column nav-pills col-md-2 col-sm-12" id="v-pills-tab" role="tablist"
                 aria-orientation="vertical">
-                <button class="nav-link" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home"
-                    type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">Perfil</button>
+                {{-- <button class="nav-link" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home"
+                    type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">Perfil</button> --}}
                 <button class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill"
                     data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile"
                     aria-selected="false">Mis propuestas</button>
@@ -123,7 +123,6 @@
         <div class="modal-dialog">
             <form action="{{ route('propuesta.store') }}" method="POST">
                 @csrf
-
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Nueva Propuesta</h5>
@@ -132,18 +131,18 @@
                     <div class="modal-body">
                         <div class="mb-3">
                             <label for="recipient-name" class="col-form-label">Titulo</label>
-                            <input type="text" name="pro_title" placeholder="Titulo de la propuesta" class="form-control"
+                            <input type="text" required name="pro_title" placeholder="Titulo de la propuesta" class="form-control"
                                 id="recipient-name">
                         </div>
                         <div class="mb-3">
                             <label for="message-text" class="col-form-label">Propuesta</label>
-                            <textarea class="form-control" name="pro_description" placeholder="Añade tu propuesta"
+                            <textarea class="form-control" required name="pro_description" placeholder="Añade tu propuesta"
                                 id="message-text"></textarea>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-warning">Comprar</button>
-                        <button type="submit" class="btn btn-primary">Subir Gratis</button>
+                        <input type="submit" name="comprar" value="Comprar" class="btn btn-warning">
+                        <input type="submit" name="gratis" value="Subir gratis" class="btn btn-primary">
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
                     </div>
                 </div>

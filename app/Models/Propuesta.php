@@ -14,6 +14,7 @@ class Propuesta extends Model
         'pro_description',
         'pro_image',
         'use_id',
+        'pro_premium'
     ];
 
     public function propuestaUserPropuesta()

@@ -27,6 +27,8 @@ Route::middleware('auth')->group(function (){
     Route::get('/perfil/inversionistas',[PerfilController::class,'indexInvestor'])->name('investor.index');
     Route::delete('/perfil/inversionistas/{id}',[PerfilController::class,'deleteInvestor'])->name('investor.delete');
     Route::post('/propuesta',[PropuestaController::class,'store'])->name('propuesta.store');
+    Route::get('/payment',[PropuestaController::class,'payment'])->name('payment');
+    Route::post('/payment',[PropuestaController::class,'store'])->name('payment.process');
 });
 
 Route::get('nuevo',function(){

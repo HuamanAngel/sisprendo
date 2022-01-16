@@ -11,78 +11,76 @@
 
 
 @section('content')
-    <div class="container">
-
-        <div class="d-flex align-items-start row">
-            <div class="bg-primary nav flex-column nav-pills col-md-2 col-sm-12" id="v-pills-tab" role="tablist"
-                aria-orientation="vertical">
-                <button class="nav-link" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home"
-                    type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">Perfil</button>
-                <button class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill"
-                    data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile"
-                    aria-selected="false">Mis propuestas</button>
-                <button class="nav-link active" id="v-pills-messages-tab" data-bs-toggle="pill"
-                    data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages"
-                    aria-selected="false">Inversionistas</button>
-            </div>
-            <div class="tab-content col-md-10 col-sm-10" id="v-pills-tabContent">
-                <div class="tab-pane fade" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+    <div class="container row">
+        <div class="col-6">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="text-center"> Datos de la operacion</h3>
                 </div>
-                <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
-                </div>
-                <div class="tab-pane fade show active" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
-                    <caption class="fw-bold text-center py-2">Interesados en tus propuestas</caption>
-                    <div class="table-responsive">
-                        <table class="table caption-top">
+                <div class="card-body">
+                    <div class="d-flex justify-content-center">
+                        <div style="background-color:rgb(69,198,255);color:white;width:75%" class="p-4">
+                            <div class="row">
+                                <div class="col-8">
+                                    <h4 class="" style="text-align: left">Importe : </h4>
+                                </div>
 
+                                <div class="col-4">
+                                    <h2 class="" style="text-align: right">$10.00</h2>
+                                </div>
 
-                            <thead>
-                                <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">Propuesta</th>
-                                    <th scope="col">Interesado</th>
-                                    <th scope="col">Telefono</th>
-                                    <th scope="col">Celular</th>
-                                    <th scope="col">Fecha de interes</th>
-                                    <th scope="col">Correo</th>
-                                    <th scope="col">Acciones</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @php
-                                    $iteracionNow = 0;
-                                @endphp
-                                @foreach(auth()->user()->userPropuestas as $propuesta)
-                                    @foreach($propuesta->propuestaUserPropuesta as $userPropuesta)
-                                        @php
-                                            $iteracionNow++;
-                                        @endphp
-                                    <tr>
-                                        <th scope="row">{{ $iteracionNow }}</th>
-                                        <td><a href="{{ route('propuesta.show',$propuesta->id) }}">{{ 'Pro-'.$iteracionNow }}</a></td>
-                                        <td>{{ $userPropuesta->userPropuestaUser->use_name.' '.$userPropuesta->userPropuestaUser->use_lastname }}</td>
-                                        <td>{{ $userPropuesta->userPropuestaUser->use_phone }}</td>
-                                        <td>{{ $userPropuesta->userPropuestaUser->use_cellphone }}</td>
-                                        <td>{{ $userPropuesta->created_at }} </td>
-                                        <td>{{ $userPropuesta->userPropuestaUser->email }}</td>
-                                        <td>
-                                            <form action="{{ route('investor.delete',$userPropuesta->id) }}" method="POST">
-                                                @csrf
-                                                @method('delete')
-                                                <button type="submit" class="btn btn-primary">Borrar</button>
-                                            </form>
-                                        </td>
-    
-                                    </tr>
-                                    @endforeach
-                                @endforeach
-                            </tbody>
-                        </table>
+                            </div>
+                        </div>
                     </div>
-
+                    <p> <strong>Codigo de transaccion : </strong> P2131-XSDA2-123 </p>
+                    <p> <strong>Beneficiario : </strong> AOE Inc </p>
+                    <p> <strong>Fecha : </strong> {{ now() }} </p>
+                    <p> <strong>Descripcion : </strong> Pago por tarjeta premium </p>
                 </div>
             </div>
         </div>
+        <div class="col-6">
+            <div class="card">
+                <div class="card-header">
+                </div>
+                <form action="{{ route('payment.process') }}" method="POST">
+                    @csrf
+                    <div class="card-body">                        
+                        <div class="row">
+                            <div class="col-sm-12 p-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+                                    <label class="form-check-label" for="exampleRadios1">
+                                      Tarjeta de credito/debito
+                                    </label>
+                                  </div>                                
+                            </div>
+                            <div class="col-sm-12 p-4">
+                                <input type="text" class="form-control" required placeholder="Numero de tarjeta">
+                            </div>
+                            <div class="col-sm-12 p-4">
+                                <input type="text" class="form-control" required placeholder="Nombre del titular">
+                            </div>
+                            <div class="col-sm-6 p-4">
+                                <input type="text" class="form-control" required placeholder="Fecha de vencimiento">
+                            </div>
+                            <div class="col-sm-6 p-4">
+                                <input type="text" class="form-control" required placeholder="CVV">
+                            </div>
+
+                        </div>
+                    </div>
+                    <input type="hidden" name="pro_title" value="{{ $request->pro_title }}">
+                    <input type="hidden" name="pro_description" value="{{ $request->pro_description }}">
+                    <div class="d-flex justify-content-center">
+                        <button class="btn btn-secondary p-2 m-4" onclick="window.location.href='{{ route('investor.index') }}' ">Cancelar</button>
+                        <input type="submit" name="premium" class="btn btn-primary p-2 m-4" value="Pagar">
+                    </div>
+                </form>
+
+            </div>
+        </div>
+
     </div>
 @endsection
 
